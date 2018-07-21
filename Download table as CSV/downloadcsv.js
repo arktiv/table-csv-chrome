@@ -11,7 +11,9 @@
 			let table = clickedEl.closest("table");		
 			if(table === null){
 				alert("No HTML table was found");
+				return;
 			}
+			table = table.cloneNode(true);
 			let csv = [];
 			let rows = table.rows;			
 			for (let i = 0; i < rows.length; i++) {
@@ -24,8 +26,13 @@
 					for(let a = 1; a < cols[j].colSpan; a++){
 						row.push("\"\""); //keep alignment by adding empty cells for colSpan
 					}
+					for(let a = 1; a < cols[j].rowSpan; a++){
+						rows[i+a].insertBefore(document.createElement("td"), rows[i+a].children[j]); //keep alignment by adding empty cells for rowSpan
+					}
 				}
-				csv.push(row.join(","));  	
+				csv.push(row.join(","));  
+				
+				debugger;				
 			}  
 			let downloadLink = document.createElement("a");
 			downloadLink.download = (table.id || table.id.length > 0) ? table.id + ".csv" : "table.csv";
