@@ -1,0 +1,21 @@
+{
+	"name": "Download table as CSV",
+	"description": "Download HTML tables in MS Excel style CSV format. \n Simple to use: Right click > Download table as CSV \n This attempts to follow RFC4180",
+	"version": "1.0",
+	"manifest_version": 2,
+	"permissions": ["contextMenus"],
+	"background": {
+		"scripts": ["background.js"],
+		"persistent": false
+	},
+	"content_scripts": [{
+		"js": ["downloadcsv.js"],
+		"matches": ["https://*/*", "http://*/*"],	
+		"all_frames": true
+	}],
+	"icons": {
+		"32": "icons/32x32.png",
+		"64": "icons/64x64.png",
+		"128": "icons/128x128.png"
+	}
+}
