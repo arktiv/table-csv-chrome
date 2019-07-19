@@ -1,7 +1,7 @@
 {
 	"name": "Download table as CSV",
-	"description": "Download HTML tables in MS Excel style CSV format. \n Simple to use: Right click > Download table as CSV \n This attempts to follow RFC4180",
-	"version": "1.0",
+	"description": "Download HTML tables in MS Excel style CSV format.",
+	"version": "1.2",
 	"manifest_version": 2,
 	"permissions": ["contextMenus"],
 	"background": {
