@@ -23,6 +23,7 @@
 					let columnItem = cols[j].innerText.replace("\"", "\"\""); //as per rfc4180					
 					columnItem = columnItem.replace(/(\r\n\t|\n|\r\t)/gm," "); //New lines are nothing but trouble
 					cols[j].querySelectorAll("img").forEach(function(ele){ columnItem = columnItem + (columnItem.length > 0 ? " " : "") + ele.src; });
+					cols[j].querySelectorAll("input, textarea").forEach(function(ele){ columnItem = columnItem + (columnItem.length > 0 ? " " : "") + ele.value + " (i)"; });
 					row.push("\"" + columnItem + "\"");
 					for(let a = 1; a < cols[j].colSpan; a++){
 						row.push("\"\""); //keep alignment by adding empty cells for colSpan
