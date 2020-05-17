@@ -1,6 +1,11 @@
 (function() {
 	"use strict";
-	let clickedEl = document.getSelection().focusNode.parentElement;
+	let selected = document.getSelection();
+	if (!selected.focusNode) {
+		alert("No HTML table was found focus point. Try clicking inside the table and try again.");
+		return;
+	}
+	let clickedEl = selected.focusNode.parentElement;
 	let table = clickedEl.closest("table");		
 	if(table === null){
 		alert("No HTML table was found");
