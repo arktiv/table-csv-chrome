@@ -14,7 +14,6 @@
 		for (let i = 0; i < rows.length; i++) {
 			let row = [], cols = rows[i].querySelectorAll("td, th");	
 			for (let j = 0; j < cols.length; j++) {
-				//let columnItem = cols[j].innerText.replace("\"", "\"\""); //as per rfc4180
 				let columnItem = cols[j].innerText.replace(/"/g, "\"\""); //as per rfc4180
 				columnItem = columnItem.replace(/(\r\n\t|\n|\r\t)/gm," ").trim(); //New lines are nothing but trouble										
 				cols[j].querySelectorAll("img").forEach(function(ele){ columnItem = columnItem + (columnItem.length > 0 ? " " : "") + ele.src; });
@@ -44,12 +43,9 @@
 		startDownload();
 	}else{
 		let originalCursor = document.body.style.cursor;
-		let clickHandler = function(event){
-			document.removeEventListener("click", clickHandler, true);
-			document.body.style.cursor = originalCursor;
-			startDownload();			
-		};
-		document.addEventListener("click", clickHandler, true);
+		document.addEventListener("click", function(event){ 
+			document.body.style.cursor = originalCursor; 
+			startDownload(); }, {once:true}, true);
 		document.body.style.cursor = "crosshair";		
 	}
 })();
