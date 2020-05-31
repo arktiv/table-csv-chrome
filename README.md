@@ -1,5 +1,5 @@
 # table-csv-chrome
-Chrome extension that allows HTML tables to be downloaded as CSVs (now on firefox too)
+Chrome extension that allows HTML tables to be downloaded as CSVs (Now on firefox too! Link: https://github.com/arktiv/table-csv-firefox)
 
 https://arktiv.site/extensions/
 
