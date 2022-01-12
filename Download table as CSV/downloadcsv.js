@@ -32,7 +32,8 @@
 		let fileName = prompt("File name: ", (table.id || table.id.length > 0) ? table.id : "table");
 		if(fileName == null) return;			
 		downloadLink.download = fileName != "" ? fileName + ".csv" : "table.csv"
-		downloadLink.href = window.URL.createObjectURL(new Blob([csv.join("\r\n")], {type: "text/csv"}));
+		const bom = "\uFEFF";
+		downloadLink.href = window.URL.createObjectURL(new Blob([bom, csv.join("\r\n")], {type: "text/csv"}));
 		downloadLink.style.display = "none";
 		document.body.appendChild(downloadLink);
 		downloadLink.click();	
