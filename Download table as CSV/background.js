@@ -4,6 +4,16 @@ chrome.runtime.onInstalled.addListener(()=> {
 chrome.contextMenus.onClicked.addListener((item, tab)=> {
 		"use strict";
 		if(item.menuItemId == "DLCSV"){	
-			chrome.tabs.executeScript(tab.id, {code: "dltcsvRightClick = true;", allFrames:true}, ()=> { chrome.tabs.executeScript(tab.id, {file: "downloadcsv.js", allFrames:true});});			
+			chrome.tabs.query({active: true, currentWindow: true}, (tabs)=> {
+				chrome.scripting.executeScript({
+					target: { tabId: tabs[0].id, allFrames: true },
+					func: () => {dltcsvRightClick = true;}
+				}).then(() => {
+					chrome.scripting.executeScript({
+						target: { tabId: tabs[0].id, allFrames: true },
+						files: ["downloadcsv.js"]
+					})
+				});
+			});	
 		}	
 });
