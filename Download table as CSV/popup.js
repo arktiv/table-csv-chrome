@@ -2,7 +2,10 @@
 	"use strict";
 	document.getElementById("downloadTableAsCSVButton").addEventListener("click", ()=>{
 		chrome.tabs.query({active: true, currentWindow: true}, (tabs)=> {
-			chrome.tabs.executeScript(tabs[0].id, {file: "downloadcsv.js", allFrames:true});
+			chrome.scripting.executeScript({
+				target: { tabId: tabs[0].id, allFrames: true },
+				files: ["downloadcsv.js"]
+			});
 		});
 		window.close();
 	});

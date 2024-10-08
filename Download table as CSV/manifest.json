@@ -1,13 +1,12 @@
 {
 	"name": "Download table as CSV",
 	"description": "Download HTML tables in MS Excel style CSV format.",
-	"version": "1.6",
-	"manifest_version": 2,
-	"permissions": ["contextMenus", "activeTab", "storage"],
+	"version": "1.7",
+	"manifest_version": 3,
+	"permissions": ["contextMenus", "activeTab", "storage", "scripting"],
 	"background": {
-		"scripts": ["background.js"],
-		"persistent": false
-	},"browser_action": {
+		"service_worker": "background.js"
+	},"action": {
 		"default_popup": "popup.html"
 	},
 	"icons": {
