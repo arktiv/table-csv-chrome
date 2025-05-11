@@ -1,6 +1,6 @@
 (()=>{
 	"use strict";
-	document.getElementById("downloadTableAsCSVButton").addEventListener("click", ()=>{
+	document.getElementById("dTaCSVButton").addEventListener("click", ()=>{
 		chrome.tabs.query({active: true, currentWindow: true}, (tabs)=> {
 			chrome.scripting.executeScript({
 				target: { tabId: tabs[0].id, allFrames: true },
@@ -9,19 +9,17 @@
 		});
 		window.close();
 	});
-	chrome.storage.local.get(["encoding"], (result)=> {
-		if(result["encoding"] == "utf"){
-			document.getElementById("encodingUTF8").checked = true;
-		}else{
-			document.getElementById("encodingUTF8BOM").checked = true;
-		}
+	let encodingSelect = document.getElementById("encoding");
+	let delimiterSelect = document.getElementById("delimiter");
+	chrome.storage.local.get(["encoding", "delimiter"], (result)=> {
+		encodingSelect.value = result["encoding"];
+		delimiterSelect.value = result["delimiter"];
 	});
-
-	document.getElementById("encodingUTF8BOM").addEventListener("click", ()=>{
-		chrome.storage.local.set({"encoding": "utf8bom"});
+	encodingSelect.addEventListener("change", ()=>{
+		chrome.storage.local.set({"encoding": encodingSelect.value});
 	});
-	document.getElementById("encodingUTF8").addEventListener("click", ()=>{
-		chrome.storage.local.set({"encoding": "utf"});
+	delimiterSelect.addEventListener("change", ()=>{
+		chrome.storage.local.set({"delimiter": delimiterSelect.value});
 	});
 })(); 
 
